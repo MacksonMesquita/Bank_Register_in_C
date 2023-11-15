@@ -12,12 +12,12 @@ Este repositório apresenta um pequeno Crud em C, simulando o cadastro de client
 ---
 
 ### Este pequeno projeto foi feito durante um exercicio universitario o qual a principal caracteristica era criar um software responsável por
-* ler
-* buscar
-* listar
-* editar
-* criar
-* deletar os registros.
+* Ler
+* Buscar
+* Listar
+* Editar
+* Criar
+* Deletar os registros.
 
 Este exercicio visava aprender utilizando a linguagem C, os principais conceitos para se criar um software, tais como:
 
