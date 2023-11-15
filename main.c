@@ -23,24 +23,61 @@ void CriarRegistroDeFuncionario(struct Funcionario *itens, int *registro)
     scanf("%s", itens[*registro].nome);
 
     printf("Digite o seu email: ");
-    scanf("%f", &itens[*registro].email);
+    scanf("%s", &itens[*registro].email);
 
     printf("Digite o seu telefone: ");
-    scanf("%f", &itens[*registro].telefone);
+    scanf("%s", &itens[*registro].telefone);
+
+    printf("Digite a sua idade: ");
+    scanf("%d", &itens[*registro].idade);
 
     printf("Digite o preço de entrada para criação de novo registro: ");
     scanf("%f", &itens[*registro].preco);
 
-    printf("Digite a sua idade: ");
-    scanf("%f", &itens[*registro].idade);
-
-    if ([*registro].idade < 18)
-    {
-        printf("Desculpe, mas parece que voce e menor de idade, nao podemos continuar com o cadastro =(\n");
-        return 0;
-    }
+    printf("Muito bem! Seu cadastro foi realizado com cuesso =) ");
 
     (*registro)++;
+}
+
+// Função para criar um arquivo com os registros de um funcionario caso ele queira
+void CriarArquivo()
+{
+    struct Funcionario criarFuncionario;
+    printf("Se voce quiser gerar um arquivo portando os dados cadastrados, insira-os novamente nas areas a seguir\n");
+
+    printf("seu codigo no arquivo: ");
+    scanf("%d", criarFuncionario.codigo);
+
+    printf("seu nome no arquivo: ");
+    scanf("%s", criarFuncionario.nome);
+
+    printf("seu email no arquivo: ");
+    scanf("%s", criarFuncionario.email);
+
+    printf("seu telefone no arquivo: ");
+    scanf("%s", criarFuncionario.telefone);
+
+    printf("sua idade no arquivo: ");
+    scanf("%d", criarFuncionario.idade);
+
+    printf("preco estipulado a ser inserido no arquivo: ");
+    scanf("%f", criarFuncionario.preco);
+
+    FILE *arquivo = fopen("dados_usuario.txt", "a");
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.");
+        return;
+    }
+
+    fprintf(arquivo, "codigo: %d\n", criarFuncionario.codigo);
+    fprintf(arquivo, "nome: %s\n", criarFuncionario.nome);
+    fprintf(arquivo, "email: %s \n", criarFuncionario.email);
+    fprintf(arquivo, "telefone: %s \n", criarFuncionario.telefone);
+    fprintf(arquivo, "idade: %d anos\n", criarFuncionario.idade);
+    fprintf(arquivo, "preco: %.2f reais\n", criarFuncionario.preco);
+
+    fclose(arquivo);
 }
 
 // Função para exibir todos os registros
@@ -51,8 +88,9 @@ void ListarFuncionarios(const struct Funcionario *itens, int contador)
     {
         printf("Código: %d\n", itens[i].codigo);
         printf("Nome: %s\n", itens[i].nome);
-        printf("Preço: %.2f\n", itens[i].email);
-        printf("Preço: %.2f\n", itens[i].telefone);
+        printf("Preço: %s\n", itens[i].email);
+        printf("Preço: %s\n", itens[i].telefone);
+        printf("Preço: %d\n", itens[i].idade);
         printf("Preço: %.2f\n", itens[i].preco);
     }
 }
@@ -60,27 +98,28 @@ void ListarFuncionarios(const struct Funcionario *itens, int contador)
 // Função para buscar um registro por código
 void buscarRegistroDeFuncionario(const struct Funcionario *itens, int contador)
 {
-    int codigoBusca;
+    int codigoDaBusca;
     printf("Digite o código a ser buscado: ");
-    scanf("%d", &codigoBusca);
+    scanf("%d", &codigoDaBusca);
 
-    int encontrado = 0;
+    int resultadoBusca = 0;
     for (int i = 0; i < contador; i++)
     {
-        if (itens[i].codigo == codigoBusca)
+        if (itens[i].codigo == codigoDaBusca)
         {
             printf("Registro Encontrado:\n");
             printf("Código: %d\n", itens[i].codigo);
             printf("Nome: %s\n", itens[i].nome);
-            printf("Preço: %.2f\n", itens[i].email);
-            printf("Preço: %.2f\n", itens[i].telefone);
+            printf("Preço: %s\n", itens[i].email);
+            printf("Preço: %s\n", itens[i].telefone);
+            printf("Preço: %d\n", itens[i].idade);
             printf("Preço: %.2f\n", itens[i].preco);
-            encontrado = 1;
+            resultadoBusca = 1;
             break;
         }
     }
 
-    if (!encontrado)
+    if (!resultadoBusca)
     {
         printf("O registro ditado não foi encontrado =( \n");
         printf("Verifique se o codigo inserido esta correto. \n");
@@ -104,6 +143,15 @@ void editarRegistroDeFuncionario(struct Funcionario *itens, int contador)
 
             printf("Digite o novo preço: ");
             scanf("%f", &itens[i].preco);
+
+            printf("Digite o novo telefone: ");
+            scanf("%s", &itens[i].telefone);
+
+            printf("Digite o novo email: ");
+            scanf("%s", &itens[i].email);
+
+            printf("Digite o novo idade: ");
+            scanf("%d", &itens[i].idade);
 
             printf("Registro de codigo editado com sucesso.\n");
             encontrado = 1;
@@ -179,10 +227,11 @@ int main()
         printf("\nEscolha o tipo de operacao que deseja realizar:\n");
 
         printf("1 - Adicionar um novo registro de funcionario\n");
-        printf("2 - Listar rregistros\n");
-        printf("3 - Buscar registro\n");
-        printf("4 - Editar registro\n");
-        printf("5 - Deletar registro\n");
+        printf("2 - Criar arquivo com registro\n");
+        printf("3 - Listar rregistros\n");
+        printf("4 - Buscar registro\n");
+        printf("5 - Editar registro\n");
+        printf("6 - Deletar registro\n");
 
         scanf("%d", &escolhadousuario);
 
@@ -192,21 +241,24 @@ int main()
             CriarRegistroDeFuncionario(itens, &contador);
             break;
         case 2:
-            ListarFuncionarios(itens, contador);
+            CriarArquivo();
             break;
         case 3:
-            buscarRegistroDeFuncionario(itens, contador);
+            ListarFuncionarios(itens, contador);
             break;
         case 4:
-            editarRegistroDeFuncionario(itens, contador);
+            buscarRegistroDeFuncionario(itens, contador);
             break;
         case 5:
+            editarRegistroDeFuncionario(itens, &contador);
+            break;
+        case 6:
             deletarRegistroDeFuncionario(itens, &contador);
             break;
         default:
             printf("Opcao invalida. Tente novamente.\n");
         }
-    } while (escolhadousuario != 4);
+    } while (escolhadousuario != 6);
 
     return escolhadousuario;
 }
