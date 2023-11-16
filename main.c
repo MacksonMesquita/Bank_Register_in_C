@@ -46,22 +46,22 @@ void CriarArquivo()
     printf("Se voce quiser gerar um arquivo portando os dados cadastrados, insira-os novamente nas areas a seguir\n");
 
     printf("seu codigo no arquivo: ");
-    scanf("%d", criarFuncionario.codigo);
+    scanf("%d", &criarFuncionario.codigo);
 
     printf("seu nome no arquivo: ");
-    scanf("%s", criarFuncionario.nome);
+    scanf("%s", &criarFuncionario.nome);
 
     printf("seu email no arquivo: ");
-    scanf("%s", criarFuncionario.email);
+    scanf("%s", &criarFuncionario.email);
 
     printf("seu telefone no arquivo: ");
-    scanf("%s", criarFuncionario.telefone);
+    scanf("%s", &criarFuncionario.telefone);
 
     printf("sua idade no arquivo: ");
-    scanf("%d", criarFuncionario.idade);
+    scanf("%d", &criarFuncionario.idade);
 
     printf("preco estipulado a ser inserido no arquivo: ");
-    scanf("%f", criarFuncionario.preco);
+    scanf("%f", &criarFuncionario.preco);
 
     FILE *arquivo = fopen("dados_usuario.txt", "a");
     if (arquivo == NULL)
@@ -224,7 +224,9 @@ int main()
         printf("  │                  │  \n");
         printf("  └──────────────────┘  \n");
 
-        printf("\nEscolha o tipo de operacao que deseja realizar:\n");
+        printf("\nEscolha o tipo de operacao que deseja realizar: \n");
+
+        printf("\n------------------------------------------------------- \n");
 
         printf("1 - Adicionar um novo registro de funcionario\n");
         printf("2 - Criar arquivo com registro\n");
