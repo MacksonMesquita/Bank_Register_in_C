@@ -23,18 +23,20 @@ void CriarRegistroDeFuncionario(struct Funcionario *itens, int *registro)
     scanf("%s", itens[*registro].nome);
 
     printf("Digite o seu email: ");
-    scanf("%s", &itens[*registro].email);
+    scanf("%s", itens[*registro].email);
 
     printf("Digite o seu telefone: ");
-    scanf("%s", &itens[*registro].telefone);
+    scanf("%s", itens[*registro].telefone);
 
     printf("Digite a sua idade: ");
     scanf("%d", &itens[*registro].idade);
 
-    printf("Digite o preço de entrada para criação de novo registro: ");
+    printf("Digite o preço de entrada para criação de novo registro:");
     scanf("%f", &itens[*registro].preco);
 
-    printf("Muito bem! Seu cadastro foi realizado com cuesso =) ");
+    printf("\n");
+
+    printf("Muito bem! Seu cadastro foi realizado com cuesso =) \n");
 
     (*registro)++;
 }
@@ -49,13 +51,13 @@ void CriarArquivo()
     scanf("%d", &criarFuncionario.codigo);
 
     printf("seu nome no arquivo: ");
-    scanf("%s", &criarFuncionario.nome);
+    scanf("%s", criarFuncionario.nome);
 
     printf("seu email no arquivo: ");
-    scanf("%s", &criarFuncionario.email);
+    scanf("%s", criarFuncionario.email);
 
     printf("seu telefone no arquivo: ");
-    scanf("%s", &criarFuncionario.telefone);
+    scanf("%s", criarFuncionario.telefone);
 
     printf("sua idade no arquivo: ");
     scanf("%d", &criarFuncionario.idade);
@@ -145,10 +147,10 @@ void editarRegistroDeFuncionario(struct Funcionario *itens, int contador)
             scanf("%f", &itens[i].preco);
 
             printf("Digite o novo telefone: ");
-            scanf("%s", &itens[i].telefone);
+            scanf("%s", itens[i].telefone);
 
             printf("Digite o novo email: ");
-            scanf("%s", &itens[i].email);
+            scanf("%s", itens[i].email);
 
             printf("Digite o novo idade: ");
             scanf("%d", &itens[i].idade);
@@ -199,7 +201,7 @@ void deletarRegistroDeFuncionario(struct Funcionario *itens, int *contador)
 
 int main()
 {
-    struct Funcionario itens[10]; // Supomos que você não terá mais de 100 registros
+    struct Funcionario itens[10];
     int contador = 0;
     int escolhadousuario;
 
@@ -229,7 +231,7 @@ int main()
         printf("\n------------------------------------------------------- \n");
 
         printf("1 - Adicionar um novo registro de funcionario\n");
-        printf("2 - Criar arquivo com registro\n");
+        printf("2 - Criar arquivo com meu registro\n");
         printf("3 - Listar rregistros\n");
         printf("4 - Buscar registro\n");
         printf("5 - Editar registro\n");
@@ -252,7 +254,7 @@ int main()
             buscarRegistroDeFuncionario(itens, contador);
             break;
         case 5:
-            editarRegistroDeFuncionario(itens, &contador);
+            editarRegistroDeFuncionario(itens, contador);
             break;
         case 6:
             deletarRegistroDeFuncionario(itens, &contador);
