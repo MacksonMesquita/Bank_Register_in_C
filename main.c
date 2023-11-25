@@ -45,9 +45,9 @@ void CriarRegistroDeFuncionario(struct Funcionario *itens, int *registro)
 void CriarArquivo()
 {
     struct Funcionario criarFuncionario;
-    printf("Se voce quiser gerar um arquivo portando os dados cadastrados, insira-os novamente nas areas a seguir\n");
+    printf("Se voce quiser gerar um arquivo portando os dados cadastrados, insira-os novamente nas areas a seguir");
 
-    printf("seu codigo no arquivo: ");
+    printf("\nseu codigo no arquivo: ");
     scanf("%d", &criarFuncionario.codigo);
 
     printf("seu nome no arquivo: ");
@@ -62,8 +62,10 @@ void CriarArquivo()
     printf("sua idade no arquivo: ");
     scanf("%d", &criarFuncionario.idade);
 
-    printf("preco estipulado a ser inserido no arquivo: ");
+    printf("preco estipulado a ser inserido no arquivo:");
     scanf("%f", &criarFuncionario.preco);
+
+    printf("\nMuito bem! Um arquivo foi gerado contendo os seus dados pessoais =) \n");
 
     FILE *arquivo = fopen("dados_usuario.txt", "a");
     if (arquivo == NULL)
@@ -232,7 +234,7 @@ int main()
 
         printf("1 - Adicionar um novo registro de funcionario\n");
         printf("2 - Criar arquivo com meu registro\n");
-        printf("3 - Listar rregistros\n");
+        printf("3 - Listar registros\n");
         printf("4 - Buscar registro\n");
         printf("5 - Editar registro\n");
         printf("6 - Deletar registro\n");
